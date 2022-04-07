@@ -14,6 +14,6 @@ public class Quiz_2475 {
 	}
 }
 
-// 백준 사이트에서 컴파일 에러 남
+// 백준 사이트에서 컴파일 에러 남 -> 자바 클래스 명을 Main 으로 설정해주어야 백준에서 오류가 안남!
 // error: ‘import’ does not name a type
 // error: expected unqualified-id before ‘public’
