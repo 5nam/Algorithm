@@ -1,3 +1,4 @@
+// 문제를 잘못 이해함 : 체스판 전체가 아닌 8*8 로 잘라서 제일 최적화 된 부분만 잘라내는 것
 import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
