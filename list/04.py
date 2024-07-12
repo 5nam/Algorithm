@@ -7,36 +7,22 @@ def solution(answers):
     
     count = [0, 0, 0]
 
-    first_answer = []
-    second_answer = []
-    third_answer = []
-
-    # 답지 생성
-    first_answer += list(first * (len(answers) // len(first)))
-    first_answer += list(first[:(len(answers) % len(first))])
-    second_answer += list(second * (len(answers) // len(second)))
-    second_answer += list(second[:(len(answers) % len(second))])
-    third_answer += list(third * (len(answers) // len(third)))
-    third_answer += list(third[:(len(answers) % len(third))])
     
     # 답지 비교
-    for i in range(len(answers)):
-        if answers[i] == first_answer[i]:
+    for index, value in enumerate(answers):
+        if answers[index] == first[index % len(first)]:
             count[0] += 1
-        if answers[i] == second_answer[i]:
+        if answers[index] == second[index % len(second)]:
             count[1] += 1
-        if answers[i] == third_answer[i]:
+        if answers[index] == third[index % len(third)]:
             count[2] += 1
     
     value = max(count)
     answer = []
     
-    if value == count[0]:
-        answer.append(1)
-    if value == count[1]:
-        answer.append(2)
-    if value == count[2]:
-        answer.append(3)
+    for index in range(3):
+        if value == count[index]:
+            answer.append(index+1)
         
     return answer
 
