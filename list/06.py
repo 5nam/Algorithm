@@ -8,7 +8,6 @@ def solution(N, stages):
         stage_count[stages[index] -1] += 1
     
     # 실패율 구하기
-    player_num = 0
     stage_fail = []
     
     for index in range(N):
@@ -16,10 +15,10 @@ def solution(N, stages):
             stage_fail.append([index+1, 0])
             continue
         
-        fail_rate = stage_count[index] / (players - player_num)
+        fail_rate = stage_count[index] / players
         
         stage_fail.append([index+1, fail_rate])
-        player_num += stage_count[index]
+        players -= stage_count[index]
     
     # 1) 실패율 기준으로 2) 인덱스 기준으로 정렬
     
@@ -28,5 +27,3 @@ def solution(N, stages):
     answer = list(zip(*sorted_array))
         
     return answer[0]
-
-print(solution(5, [2,1,2,6,2,4,3,3]))
