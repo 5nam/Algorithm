@@ -1,33 +1,14 @@
 def solution(dirs):
-    direction = list(dirs)
-
-    dx = [0, 0, 1, -1]
-    dy = [1, -1, 0, 0]
+    route = set()
+    direction = {'U':(0, 1), 'D':(0, -1),'R':(1, 0), 'L':(-1, 0)}
 
     x, y = 0, 0
 
-    route = set()  # 집합으로 변경
-    
-    # 방문한 좌표랑 방향 저장하기
-    for value in direction:
-        if value == 'U':
-            nx, ny = x + dx[0], y + dy[0]
-        elif value == 'D':
-            nx, ny = x + dx[1], y + dy[1]
-        elif value == 'R':
-            nx, ny = x + dx[2], y + dy[2]
-        elif value == 'L':
-            nx, ny = x + dx[3], y + dy[3]
-
+    for value in dirs:
+        nx, ny = x + direction[value][0], y + direction[value][1]
         if -5 <= nx <= 5 and -5 <= ny <= 5:
-            px = x
-            py = y
-            x = nx
-            y = ny
-            if ((px, py, x, y) not in route and (x, y, px, py) not in route):
-                route.add((px, py, x, y))
-        else:
-            nx = x
-            ny = y
-    
-    return len(route)
+            route.add((x, y, nx, ny))
+            route.add((nx, ny, x, y))
+            x, y = nx, ny
+
+    return len(route)//2
