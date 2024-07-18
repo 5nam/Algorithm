@@ -6,7 +6,7 @@ def solution(dirs):
 
     x, y = 0, 0
 
-    route = []
+    route = set()  # 집합으로 변경
     
     # 방문한 좌표랑 방향 저장하기
     for value in direction:
@@ -24,11 +24,10 @@ def solution(dirs):
             py = y
             x = nx
             y = ny
-            if [px, x, py, y] not in route and [x, px, y, py] not in route:
-                route.append([px, x, py, y])
+            if ((px, py, x, y) not in route and (x, y, px, py) not in route):
+                route.add((px, py, x, y))
         else:
             nx = x
             ny = y
-    
     
     return len(route)
