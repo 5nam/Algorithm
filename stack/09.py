@@ -10,9 +10,7 @@ def solution(value):
     stack.append(value)
 
     result = ""
-    for _ in range(len(stack)):
+    while stack:
         result += str(stack.pop())
     
     return result
-
-print(solution(12345))
