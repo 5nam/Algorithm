@@ -6,6 +6,9 @@ def solution(str):
         if item == '(':
             stack.append(item)
         elif item == ')':
-            stack.pop()
+            if not stack: # 스택이 비었다면
+                return False
+            else:
+                stack.pop()
         
     return len(stack) == 0
