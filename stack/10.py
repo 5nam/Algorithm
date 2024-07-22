@@ -21,8 +21,18 @@ def check_bracket(s_list):
         elif value==')' or value==']' or value=='}':
             if not stack:
                 return False
-            stack.pop()
+            
+            item = stack.pop()
+            if value == ')':
+                if item != '(':
+                    return False
+            elif value == ']':
+                if item != '[':
+                    return False
+            elif value == '}':
+                if item != '{':
+                    return False            
 
     return not stack
 
-print(solution("[](){}"))
+print(solution("[)(]"))
