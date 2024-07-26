@@ -13,7 +13,8 @@ def solution(n, k, cmd):
                     k -= 1
                 # 삭제된 위치의 바로 아래니까 앞으로 채워지니까 그대로인 것
             elif value_list[0] == 'Z':
-                box.pop()
+                if box.pop() <= k:
+                    k += 1
                 temp += 1
 
         else:
