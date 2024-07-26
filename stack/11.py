@@ -1,14 +1,13 @@
 def solution(S):
     s_list = list(S)
     stack = [s_list[0]]
-    n = len(s_list)
 
-    for i in range(1, n):
-        if stack and stack[-1] == s_list[i]:
+    for value in s_list:
+        if stack and stack[-1] == value:
             stack.pop()
 
         else:
-            stack.append(s_list[i])
+            stack.append(value)
     
     if stack:
         return 0
