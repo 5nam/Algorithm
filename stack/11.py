@@ -1,6 +1,6 @@
 def solution(S):
     s_list = list(S)
-    stack = [s_list[0]]
+    stack = []
 
     for value in s_list:
         if stack and stack[-1] == value:
