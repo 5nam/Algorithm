@@ -1,16 +1,19 @@
 def solution(prices):
-    num = len(prices)
-    result = []
-    for i in range(num):
-        if i == num:
-            result.append(0)
-            return
-        for j in range(i+1, num):
-            if prices[i] > prices[j]:
-                break
+    p_num = len(prices)
+    stack = [0]
+    result = [0] * p_num
 
-        result.append(j-i)
+    for i in range(1, p_num):
+        if prices[stack[-1]] > prices[i]:
+            while prices[stack[-1]] > prices[i]:
+                result[stack.pop()] = i - stack[-1]
+        stack.append(i)
     
+    s_num = len(stack)
+
+    for i in range(s_num):
+        result[stack.pop()] = p_num - 1 - stack[-1]
+
     return result
 
 print(solution([1,2,3,2,3]))
