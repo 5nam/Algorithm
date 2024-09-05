@@ -1,29 +1,27 @@
 def solution(N, stages):
-    # 스테이지마다 몇 명이 있는지 세기
+    answer = [0] * (N+1)
+    fail_rate = []
     players = len(stages)
-    stage_count = [0] * (N+1)
     
     
-    for index in range(players):
-        stage_count[stages[index] -1] += 1
+    for i in range(len(stages)):
+        answer[stages[i] - 1] += 1
     
-    # 실패율 구하기
-    stage_fail = []
-    
-    for index in range(N):
-        if stage_count[index] == 0:
-            stage_fail.append([index+1, 0])
-            continue
+    front_player = 0
+    for i in range(len(answer)-1):
         
-        fail_rate = stage_count[index] / players
+        if answer[i] == 0:
+            fail = 0
+        else:
+            fail = answer[i] / (players - front_player)
         
-        stage_fail.append([index+1, fail_rate])
-        players -= stage_count[index]
-    
-    # 1) 실패율 기준으로 2) 인덱스 기준으로 정렬
-    
-    sorted_array = sorted(stage_fail, key=lambda x: (-x[1], x[0]))
-    
-    answer = list(zip(*sorted_array))
+        fail_rate.append([i+1, fail])
+        front_player += answer[i]
         
-    return answer[0]
+    result = list(zip(*sorted(fail_rate, key = lambda x:(-x[1], x[0]))))
+    
+    return result[0]
+
+arr = [2,1,2,6,2,4,3,3]
+
+print(solution(5, arr))
