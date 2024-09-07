@@ -1,57 +1,22 @@
 def solution(dirs):
     
     dirs = list(dirs)
-    now = [0, 0]
-    route = []
-    count = 0
+    location = {'U':(1, 0), 'D':(-1, 0), 'R':(0, 1), 'L':(0, -1)}
+    x, y = 0, 0
+    route = set()
     
     for dir in dirs:
-        if dir == 'U':
-            if now[1] == 5:
-                continue
+        dx, dy = location[dir]
+        nx, ny = x+dx, y+dy
 
-            next_now = [now[0], now[1] + 1]
-            new_route = [now, next_now]
-            new_route_reverse = [next_now, now]
-            
-            now = next_now
+        # 현재 상태에서 이미 다음 위치로 이동시킨 nx, ny 값이 5보다 작거나 같으면 현재 이동해도 되는 상태인 것
+        if abs(nx) <= 5 and abs(ny) <= 5:
+            route.add(x, y, nx, ny)
+            route.add(dx, dy, x, y)
 
-        elif dir == 'D':
-            if now[1] == -5:
-                continue
-            
-            next_now = [now[0], now[1] - 1]
-            new_route = [now, next_now]
-            new_route_reverse = [next_now, now]
-            
-            now = next_now
-        elif dir == 'R':
-            if now[0] == 5:
-                continue
-            
-            next_now = [now[0] + 1, now[1]]
-            new_route = [now, next_now]
-            new_route_reverse = [next_now, now]
-            
-            now = next_now
-            
-        elif dir == 'L':
-            if now[0] == -5:
-                continue
-
-            next_now = [now[0] - 1, now[1]]
-            new_route = [now, next_now]
-            new_route_reverse = [next_now, now]
-            
-            now = next_now
-        
-        if new_route not in route or new_route_reverse not in route:
-            count += 1
-            route.append(new_route)
-            route.append(new_route_reverse)
-            
+            x, y = nx, ny       
     
-    return count
+    return route // 2
 
 
 # dirs = "ULURRDLLU"
