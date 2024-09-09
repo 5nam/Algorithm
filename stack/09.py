@@ -9,8 +9,8 @@ def solution(value):
 
     stack.append(value)
 
-    result = ""
-    while stack:
-        result += str(stack.pop())
-    
-    return result
+    stack.reverse()
+        
+    return ''.join(map(str, stack))
+
+print(solution(10))
