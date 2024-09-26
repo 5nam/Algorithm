@@ -1,27 +1,27 @@
 import java.util.Scanner;
-public class Main {
+public class Main_1018_ver2 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		int m = sc.nextInt();
 		String C[] = new String[n];
 		char ALL[][] = new char[50][50];
-		// ÀÔ·Â¹Þ±â
+		// ï¿½Ô·Â¹Þ±ï¿½
 		for(int i = 0; i<n; i++) {
 			C[i] = sc.next();
 		}
 		
-		// ºÐ¸®ÇÏ¿© ´Ù½Ã ÀúÀåÇÏ±â
+		// ï¿½Ð¸ï¿½ï¿½Ï¿ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		for(int i = 0; i<n; i++) {
 			for(int j = 0; j<m; j++) {
 				ALL[i][j] = C[i].charAt(j);
 			}
 		}
 		
-		// idea : ÀüÃ¼ Å½»öÀ» ÇÏ´Â °Í, ÇÑÄ­¾¿ ÀÌµ¿ÇÏ¸é¼­ 
+		// idea : ï¿½ï¿½Ã¼ Å½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½, ï¿½ï¿½Ä­ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï¸é¼­ 
 		//int num = 0;
 		int change = 0;
-		int c_flug = 0; // ÀÌÀü°ÍÀÌ change ÀÏ °æ¿ì¸¦ Ã¼Å©
+		int c_flug = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ change ï¿½ï¿½ ï¿½ï¿½ì¸¦ Ã¼Å©
 		
 		for(int i = 0; i < (n/8)+(n%8); i++) {
 			for(int j = 0; j < (m/8) + (m%8); j++) {
