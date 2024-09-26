@@ -17,15 +17,9 @@ public class Main11659 {
         int N = Integer.parseInt(stringTokenizer.nextToken());
         int M = Integer.parseInt(stringTokenizer.nextToken());
 
-        // long[] nums = new long[N];
-        long[] s_nums = new long[N];
-
+        long[] s_nums = new long[N+1];
         stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-        for(int i = 0; i<N; i++) {            
-            if(i == 0) {
-                s_nums[i] = Integer.parseInt(stringTokenizer.nextToken());
-                continue;
-            }
+        for(int i = 1; i<s_nums.length; i++) {
 
             s_nums[i] = s_nums[i-1] + Integer.parseInt(stringTokenizer.nextToken());
         }
@@ -33,13 +27,8 @@ public class Main11659 {
         long[] result = new long[M];
         for(int i = 0; i<M; i++) {
             stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-            int start = Integer.parseInt(stringTokenizer.nextToken())-2; // 인덱스로 변환하기 위해 -1, 구간합을 구하기 위해 -1
-            int end = Integer.parseInt(stringTokenizer.nextToken())-1; // 인덱스로 변환하기 위해 -1
-
-            if(start < 0) {
-                result[i] = s_nums[end];
-                continue;
-            }
+            int start = Integer.parseInt(stringTokenizer.nextToken())-1;
+            int end = Integer.parseInt(stringTokenizer.nextToken());
 
             result[i] = s_nums[end] - s_nums[start];
         }
