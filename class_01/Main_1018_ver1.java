@@ -1,4 +1,3 @@
-// ¹®Á¦¸¦ Àß¸ø ÀÌÇØÇÔ : Ã¼½ºÆÇ ÀüÃ¼°¡ ¾Æ´Ñ 8*8 ·Î Àß¶ó¼­ Á¦ÀÏ ÃÖÀûÈ­ µÈ ºÎºĞ¸¸ Àß¶ó³»´Â °Í
 import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
@@ -7,12 +6,12 @@ public class Main {
 		int m = sc.nextInt();
 		String C[] = new String[n];
 		char ALL[][] = new char[50][50];
-		// ÀÔ·Â¹Ş±â
+		// ï¿½Ô·Â¹Ş±ï¿½
 		for(int i = 0; i<n; i++) {
 			C[i] = sc.next();
 		}
 		
-		// ºĞ¸®ÇÏ¿© ´Ù½Ã ÀúÀåÇÏ±â
+		// ï¿½Ğ¸ï¿½ï¿½Ï¿ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		for(int i = 0; i<n; i++) {
 			for(int j = 0; j<m; j++) {
 				ALL[i][j] = C[i].charAt(j);
@@ -21,7 +20,7 @@ public class Main {
 		
 		//int num = 0;
 		int change = 0;
-		int c_flug = 0; // ÀÌÀü°ÍÀÌ change ÀÏ °æ¿ì¸¦ Ã¼Å©
+		int c_flug = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ change ï¿½ï¿½ ï¿½ï¿½ì¸¦ Ã¼Å©
 		for(int i = 0; i<n; i++) {
 			for(int j = m-1; j>=0; j--) {
 				//num++;
