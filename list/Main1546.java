@@ -16,7 +16,6 @@ public class Main1546 {
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 
         int N = Integer.parseInt(stringTokenizer.nextToken());
-        int M = Integer.parseInt(stringTokenizer.nextToken());
 
         double[] scores = new double[N];
         stringTokenizer = new StringTokenizer(bufferedReader.readLine());
