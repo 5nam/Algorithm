@@ -6,7 +6,7 @@ import java.util.Scanner;
  * 수의 개수 N(최대 100,000), 합을 구하는 횟수 M(최대 100,000)
  * 시간 복잡도 : O(N+M)
  */
-public class Main {
+public class Main11659 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
