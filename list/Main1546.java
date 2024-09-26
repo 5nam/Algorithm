@@ -1,21 +1,27 @@
 package list;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 /**
  * 시험 과목의 개수 1000개, 시간복잡도 : O(N), 제한시간 2초
  */
 public class Main1546 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        Scanner sc = new Scanner(System.in);
+        // Scanner sc = new Scanner(System.in);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 
-        int N = sc.nextInt();
+        int N = Integer.parseInt(stringTokenizer.nextToken());
+        int M = Integer.parseInt(stringTokenizer.nextToken());
+
         double[] scores = new double[N];
-
-        // 점수 입력받기
-        for (int i = 0; i<scores.length; i++) {
-            scores[i] = sc.nextInt();
+        stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+        for(int i = 0; i<N; i++) {
+            scores[i] = Integer.parseInt(stringTokenizer.nextToken());
         }
 
         // 최댓값 구하면서 점수 총합 구하기
@@ -30,7 +36,5 @@ public class Main1546 {
         }
 
         System.out.println(sum / max * 100 / N);
-        
-        sc.close();
     }
 }
