@@ -11,7 +11,6 @@ import java.util.StringTokenizer;
 public class Main1546 {
     public static void main(String[] args) throws IOException {
 
-        // Scanner sc = new Scanner(System.in);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 
