@@ -2,6 +2,9 @@ package list;
 
 import java.util.Scanner;
 
+/**
+ * 시간복잡도 : O(N)
+ */
 public class Main1546 {
     public static void main(String[] args) {
 
