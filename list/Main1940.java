@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.Arrays;
 
-public class Main {
+public class Main1940 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
@@ -43,6 +43,7 @@ public class Main {
             else {
                 count++;
                 start++;
+                end--;
             }
         }
 
