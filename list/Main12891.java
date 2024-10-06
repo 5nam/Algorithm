@@ -37,7 +37,7 @@ public class Main12891 {
         checkFirstSubString(start, end, pointer);
 
         // 가장 처음 부분 문자열을 판단한 데이터를 기반으로 처음 인덱스와 끝 인덱스의 다음 인덱스를 통해
-        // 나머지 부분 문장려 비밀번호 조건 충족 여부 구하기
+        // 나머지 부분 문자열 비밀번호 조건 충족 여부 구하기
         checkAllSubString(start, end, s, p);
 
         System.out.println(count);
