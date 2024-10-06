@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main12891 {
     static int[] acgtMin = new int[4];
     static char[] dna;
     // 부분 문자열 ACGT 개수 저장할 배열 초기화
