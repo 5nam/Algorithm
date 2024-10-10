@@ -1,15 +1,21 @@
 package list;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.IOException;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main17298 {
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(bf.readLine());
 
+        Stack<Integer> stack = new Stack<>();
+
+        // N 과 수열 받기
         int N = Integer.parseInt(st.nextToken());
         int result[] = new int[N];
         int nums[] = new int[N];
@@ -18,28 +24,23 @@ public class Main {
             nums[i] = Integer.parseInt(st.nextToken());
         }
 
-        for(int i = 0; i<N; i++) {
-            for(int j = i+1; j<N+1; j++) {
-                if(i == N-1) {
-                    result[i] = -1;
-                    break;
-                }
-                if (nums[i] < nums[j]) {
-                    result[i] = nums[j];
-                    break;
-                }
-                else if(nums[i] > nums[j]) {
-                    if (j == N-1) {
-                        result[i] = -1;
-                        break;
-                    }
-                }
+        stack.push(0);
+        for(int i = 1; i<N; i++) {
+            while (!stack.empty() && nums[i] > nums[stack.peek()]) {
+                result[stack.pop()] = nums[i]; 
             }
+            stack.push(i);
         }
 
-        for (int i = 0; i<N; i++) {
-            System.out.print(result[i] + " ");
+        while(!stack.empty()) {
+            result[stack.pop()] = -1;
         }
-        
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        for (int i = 0; i<N; i++) {
+            bw.write(result[i] + " ");
+        }
+        bw.write("\n");
+        bw.flush();
     }
 }
