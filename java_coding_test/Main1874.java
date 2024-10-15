@@ -1,4 +1,4 @@
-package list;
+package java_coding_test;
 
 import java.util.Scanner;
 import java.util.Stack;
