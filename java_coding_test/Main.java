@@ -13,24 +13,29 @@ public class Main {
         }
 
         for(int i = 0; i<n; i++) {
-            if(S[i] % 2 == 0) {
-                System.out.println("NO");
+            if(solution(S[i])) {
+                System.out.println("YES");
                 continue;
-            } else {
-                int devision = 3;
-                while(devision < S[i]) {
-                    if(S[i] % devision == 0) {
-                        System.out.println("NO");
-                        break;
-                    }
-                    devision += 2;
-                }
-                if(devision >= S[i]) {
-                    System.out.println("YES");
-                }
             }
+            System.out.println("NO");
         }
 
         sc.close();
+    }
+
+    public static boolean solution(long num) {
+        boolean temp = true;
+        for(long j = 2; j < num; j++) {
+            if(num % j == 0) {
+                if(j >= 1000000) {
+                    System.out.println(j);
+                    break;
+                }
+                temp = false;
+                break;
+            }
+        }
+
+        return temp;
     }
 }
