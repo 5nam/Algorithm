@@ -13,29 +13,19 @@ public class Main {
         }
 
         for(int i = 0; i<n; i++) {
-            if(solution(S[i])) {
-                System.out.println("YES");
-                continue;
-            }
-            System.out.println("NO");
-        }
-
-        sc.close();
-    }
-
-    public static boolean solution(long num) {
-        boolean temp = true;
-        for(long j = 2; j < num; j++) {
-            if(num % j == 0) {
-                if(j >= 1000000) {
-                    System.out.println(j);
+            for(long j = 2; j<1000001; j++) {
+                if(S[i]%j == 0) {
+                    // 100만 이하의 약수가 존재한다
+                    System.out.println("NO");
                     break;
                 }
-                temp = false;
-                break;
+                if (j == 1000000) {
+                    // 100만 이하의 약수가 존재하지 않는다
+                    System.out.println("YES");
+                }
             }
-        }
+        }  
 
-        return temp;
+        sc.close();
     }
 }
