@@ -1,26 +1,55 @@
 package java_coding_test;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // 모든 위치에서
-        // 모든 친구들의 거리를 계산해서
-        // 가장 적은 값을 알려주면 됨
+        Scanner sc = new Scanner(System.in);
+        int[] height = new int[9];
+        int[] not_answer = new int[2];
+        int[] answer = new int[7]; // 포함되지 않는 인덱스 골라내기
+        
 
-        // 1번 아이디어
-        // X, Y 를 구분해서 계산해준 뒤에 합쳐서
-        // 최솟값을 알려주면 됩니다!
+        for(int i = 0; i<9; i++) {
+            height[i] = sc.nextInt();
+        }
 
+        // 만약에 9명 중에 7명을 뽑는 것이고 순서는 고려하지 않는다고 하면, 9C7 의 경우의 수를 찾아보면 된다
+        // 0 부터 7 따지고, 1 부터 8 따지고, 2부터 다시 0 부터 따지고 ... 이렇게 돌면 전체 경우의 수를 볼 수 있나?
+        // 9명 중 2명을 제외하는 걸로 생각하면, 이중 for 문으로 돌려서 모든 경우의 수를 찾을 수 있음
+        int total = 0;
 
-        // 2번 아이디어
-        // 우리가 한 곳에서 모일 때, 비용을 최소화 하기 위해서는
-        // 우리의 집 중 한 곳에서 모이면 된다.
-        // 이 방법은 구성원의 집만 방문하면 된다. 즉 3명이라면 3*3 의 좌표만 방문해보면 된다. 엄청나게 경우의 수를 줄임
+        for(int i = 0; i<9; i++) {
+            total += height[i];
+        }
+        
+        for(int i = 0; i<9; i++) {
+            for(int j = i+1; j<9; j++) {
+                if(total - height[i] - height[j] == 100) {
+                    not_answer[0] = i;
+                    not_answer[1] = j;
+                    i = 10; // 정답을 찾으면 2중 for 문을 빠져나가기 위해
+                    break;
+                }
+            }
+        }
 
-        // 3번 아이디어
-        // 최소 거리를 계산하고 싶다.
-        // 그리고 2명이 모여야 한다.
-        // 그 점에서, 가까운 두명의 거리만 더해주면 되지 않을까?
-        // 최소거리를 계산하고 싶을 때, 그냥 먼저 점을 정하고 
-        // 가까운 사람의 순서대로 1명 2명 3명 4명의 값을 구해서 더해주면 됨
+        int index = 0;
+        for(int i = 0; i<9; i++) {
+            if(i == not_answer[0] || i == not_answer[1]) {
+                continue;
+            }
+            answer[index] = height[i];
+            index++;
+        }
+
+        Arrays.sort(answer);
+        
+        for(int result: answer) {
+            System.out.println(result);
+        }
+
+        sc.close();
     }
 }
