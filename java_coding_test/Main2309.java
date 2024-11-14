@@ -3,7 +3,7 @@ package java_coding_test;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Main {
+public class Main2309 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int[] height = new int[9];
