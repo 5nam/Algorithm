@@ -38,6 +38,6 @@ public class swea {
 		//마지막에 한번 더 해주기
 		result += (max*num - cost);
 			
-		System.out.println("#" + " " + result);
+		System.out.println("#" + test_case + " " + result);
     }
 }
