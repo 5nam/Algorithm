@@ -13,15 +13,20 @@ public class Main {
         dp[2] = 4;
 
         int n = sc.nextInt();
+        int[] result = new int[n];
+
         for(int i = 0; i<n; i++) {
             int num = sc.nextInt();
             for(int j = 3; j<num; j++) {
-                dp[i] = dp[i-1] + dp[i-2] + dp[i-3];
+                dp[j] = dp[j-1] + dp[j-2] + dp[j-3];
             }
+            result[i] = dp[num-1];
         }
         
+        for(int num: result) {
+            System.out.println(num);
+        }
         
-        System.out.println(dp[n-1]);
         sc.close();
     }
 }
