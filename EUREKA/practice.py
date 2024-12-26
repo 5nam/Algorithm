@@ -1,4 +1,3 @@
-from itertools import combinations
 
 def solution(B, W):
     answer = 0
@@ -20,11 +19,10 @@ def solution(B, W):
     return answer
 
 def isWinner(target):
-    temp = sorted(target, key = lambda x : (x[0], x[1]))
-    print(temp)
+    temp = sorted(target, key = lambda x : x[0])
 
     for i in range(0, len(temp)):
-        result = search1(target, temp[i]) or search2(target, temp[i]) or search3(target, temp[i]) or search4(target, temp[i]) or search5(target, temp[i])
+        result = top(target, temp[i]) or topRight(target, temp[i]) or right(target, temp[i]) or bottomRight(target, temp[i]) or bottom(target, temp[i])
 
         if(result):
             break
@@ -32,7 +30,7 @@ def isWinner(target):
     return result
     
 
-def search1(target, temp):
+def top(target, temp):
     cnt = 1
     num = 1
     while [temp[0]-num, temp[1]] in target:
@@ -44,7 +42,7 @@ def search1(target, temp):
     
     return False
 
-def search2(target, temp):
+def topRight(target, temp):
     cnt = 1
     num = 1
     while [temp[0]-num, temp[1]+num] in target:
@@ -56,7 +54,7 @@ def search2(target, temp):
     
     return False
 
-def search3(target, temp):
+def right(target, temp):
     cnt = 1
     num = 1
     while [temp[0], temp[1]+num] in target:
@@ -68,7 +66,7 @@ def search3(target, temp):
     
     return False
 
-def search4(target, temp):
+def bottomRight(target, temp):
     cnt = 1
     num = 1
 
@@ -81,7 +79,7 @@ def search4(target, temp):
     
     return False
 
-def search5(target, temp):
+def bottom(target, temp):
     cnt = 1
     num = 1
 
