@@ -24,11 +24,11 @@ def getResult(N, F, S, B, T, P, Q):
     # 최종 p, q 구하기
     p = 60*abs(before - now)*P
     q = T * Q
-
-    divisors = getDivisors(q)
-
-    # p, q 가 서로소인 조건 채우기
-    p, q = doDivisor(divisors, p, q)
+    
+    gcd = getGCD(p, q)
+    if(gcd != 1):
+        p = p//gcd
+        q = q//gcd
     
     return d * (p/q)
 
@@ -49,16 +49,12 @@ def getWhere(N, F, B):
             break
     
     return result
-    
-def getDivisors(q):
-    result = [1, q]
 
-    for i in range(2, int(sqrt(q)+1)):
-        if q%i == 0:
-            result.append(i)
-            result.append(q//i)
+def getGCD(p, q):
+    if q == 0:
+        return p
     
-    return sorted(result)
+    return getGCD(q, p%q)
 
 def getDirection(before, now):
     # d 파악
@@ -70,11 +66,12 @@ def getDirection(before, now):
 
     return d
 
-def doDivisor(divisors, p, q):
-    for i in range(len(divisors)-1, -1, -1):
-        if p%divisors[i] == 0:
-            p = p//divisors[i]
-            q = q//divisors[i]
-            break
+N = 10
+F = [1,2,3,4,5,6,7,8,0,0]
+S = [0,0,1,2,3,4,5,6,7,8]
+B = [1,2,3,4,5,6,7,8]
+T = 60
+P = 13
+Q = 11
 
-    return p, q
+getResult(N, F, S, B, T, P, Q)
