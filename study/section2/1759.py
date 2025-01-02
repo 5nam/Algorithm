@@ -11,39 +11,26 @@ lst = list(combinations(arr, L))
 # 정답이 담길 리스트
 result = []
 
-def existVowel(lst):
+def isPossible(lst):
 	vowel = ['a', 'e', 'i', 'o', 'u']
 
+	# 모음 개수 구하기
+	v = 0
 	for value in lst:
 		if value in vowel:
-			return True
+			v = v+1
 
-	return False
+	# 자음 개수 구하기
+	c = L - v
 
-
-
-def existTwoConsonant(lst):
-	vowel = ['a', 'e', 'i', 'o', 'u']
-	cnt = 0
-
-	for value in lst:
-		if value not in vowel:
-			cnt = cnt+1
-
-	return cnt > 1
+	return (v > 0 and c > 1)
 
 
 for value in lst:
-	if existVowel(value) and existTwoConsonant(value):
+	if isPossible(value):
 		result.append(value)
 
-def prt(res):
-	for i in res:
-		for j in i:
-			print(j, end="")
-	print()
-
 for res in result:
-	prt(res)
+	print(''.join(res))
 
 
