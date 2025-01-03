@@ -1,11 +1,8 @@
 n = int(input())
 
-num_list = []
+num_list = [list(map(int, input().split())) for _ in range(n)]
 
-for i in range(n):
-	num_list.append(list(map(int, input().split())))
-
-num_list = sorted(num_list, key=lambda x: (x[0], x[1]))
+num_list = sorted(num_list)
 
 for num in num_list:
-	print(' '.join(map(str, num)))
+	print(num[0], num[1])
