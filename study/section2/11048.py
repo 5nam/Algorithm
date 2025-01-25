@@ -1,30 +1,28 @@
-def func(i, j, s):
-	global arr, x, y, m
+import sys
+sys.setrecursionlimit(1000000)
 
-	# base
-	if i == x-1 and j == y-1:
-		return arr[i][j] + s
+def func(i, j):
+	global arr, f
 
-	# recursive
-	if i < x-1 and j < y-1:
-		value = func(i+1, j, s+arr[i][j])
-		if value is not None and value > m:
-			m = value
+	if f[i][j] != -1:
+		return f[i][j]
+	
+	f[i][j] = max(func(i-1, j), func(i, j-1), func(i-1, j-1)) + arr[i][j]
+	return f[i][j]
 
-	if i < x-1 and j < y-1:
-		value = func(i, j+1, s+arr[i][j])
-		if value is not None and value > m:
-			m = value
+r, c = map(int, input().split())
 
-	if i < x-1 and j < y-1:
-		value = func(i, j+1, s+arr[i][j])
-		if value is not None and value > m:
-			m = value
+# n+1 x m+1	행렬 만들기
+arr = [[0] + list(map(int, input().split())) for _ in range(r)] # 0행 추가
+arr = [[0] * (c + 1)] + arr # 0열 추가
 
-y, x = map(int, input().split())
+f = [[-1 for _ in range(c+1)] for _ in range(r+1)]
 
-arr = [list(map(int, input().split())) for _ in range(y)]
+# 초기값 설정 : 0
+for j in range(0, c + 1):
+    f[0][j] = 0
 
-m = 0
-
-print(func(0,0,0))
+for i in range(0, r + 1):
+    f[i][0] = 0
+    
+print(func(r, c))
