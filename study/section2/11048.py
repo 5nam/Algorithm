@@ -1,30 +1,13 @@
-def func(i, j, s):
-	global arr, x, y, m
+r, c = map(int, input().split())
 
-	# base
-	if i == x-1 and j == y-1:
-		return arr[i][j] + s
+# n+1 x m+1	행렬 만들기
+arr = [[0] + list(map(int, input().split())) for _ in range(r)] # 0행 추가
+arr = [[0] * (c + 1)] + arr # 0열 추가
 
-	# recursive
-	if i < x-1 and j < y-1:
-		value = func(i+1, j, s+arr[i][j])
-		if value is not None and value > m:
-			m = value
-
-	if i < x-1 and j < y-1:
-		value = func(i, j+1, s+arr[i][j])
-		if value is not None and value > m:
-			m = value
-
-	if i < x-1 and j < y-1:
-		value = func(i, j+1, s+arr[i][j])
-		if value is not None and value > m:
-			m = value
-
-y, x = map(int, input().split())
-
-arr = [list(map(int, input().split())) for _ in range(y)]
-
-m = 0
-
-print(func(0,0,0))
+f = [[0 for _ in range(c+1)] for _ in range(r+1)]
+    
+for i in range(1, r+1):
+    for j in range(1, c+1):
+        f[i][j] = max(f[i-1][j], f[i][j-1], f[i-1][j-1]) + arr[i][j]
+    
+print(f[r][c])

@@ -11,3 +11,4 @@
 ## 참고한 강의
 
 1. 개발남노씨. (n.d.). 코딩테스트 [ ALL IN ONE ]. 인프런. Retrieved July 11, 2024, from https://www.inflearn.com/course/코딩테스트-입문-파이썬
+2. 알리(Ally). (n.d.). 세계대회 코딩테스트: 파이썬. 인프런. Retrieved January 25, 2025, from https://www.inflearn.com/course/세계대회-코딩테스트-파이썬
