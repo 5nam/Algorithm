@@ -1,20 +1,19 @@
-arr1 = ['a'] + list(input())
-arr2 = ['a'] + list(input())
+s1 = input()
+s2 = input()
 
-n = len(arr1)
-dp = [0] * n
-if arr1[n-1] in arr2:
-    dp[n-1] = 1
+N, M = len(s1), len(s2)
+s1 = " " + s1
+s2 = " " + s2
 
-min_j = 1001
-for i in range(len(arr1)-2, 0, -1):
-    for j in range(1, len(arr2)):
-        if arr1[i] in arr2:
-            if arr1[i] == arr2[j]:
-                if min_j > j:
-                    min_j = j
-                    dp[i] = dp[i+1] + 1
-                else:
-                    dp[i] += 1
+# 초기값 처리
+dp = [[0] * (M + 1) for _ in range(N + 1)]
 
-print(max(dp))
+# DP Table 갱신
+for n in range(1, N + 1):
+    for m in range(1, M + 1): # dp[n][m]
+        if s1[n] == s2[m]:
+            dp[n][m] = dp[n - 1][m - 1] + 1
+        else: 
+            dp[n][m] = max(dp[n - 1][m], dp[n][m - 1])
+
+print(dp[N][M])
