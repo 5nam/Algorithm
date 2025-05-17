@@ -26,16 +26,14 @@ for i in range(8):
 
 best = 100_000
 
-# for i in range((N%8) + (N//8)):
-# 	for j in range((M%8) + (M//8)):
-# 		if (i+8) >= N or (j+8) >= M:
+for i in range(N-7):
+	for j in range(M-7):
+		best = min(best, get_min(i, j))
+
+# for i in range(N):
+# 	for j in range(M):
+# 		if (i + 7 >= N) or (j + 7 >= M):
 # 			continue
 # 		best = min(best, get_min(i, j))
-
-for i in range(N):
-	for j in range(M):
-		if (i + 7 >= N) or (j + 7 >= M):
-			continue
-		best = min(best, get_min(i, j))
 	
 print(best)
