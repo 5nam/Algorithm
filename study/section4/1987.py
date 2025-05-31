@@ -5,7 +5,7 @@ R, C = map(int, input().split())
 # arr = list('a' * C) + list('a' + input() for _ in range(R))
 arr = ['a' * C] + list('a' + input() for _ in range(R))
 
-# 좌표 이동 설정
+# 좌표 이동 설정(상하좌우)
 dy = [1, -1, 0, 0]
 dx = [0, 0, -1, 1]
 
