@@ -17,5 +17,7 @@ public class Main_2562 {
 		}
 		System.out.println(big);
 		System.out.println(index+1);
+
+		sc.close();
 	}
 }

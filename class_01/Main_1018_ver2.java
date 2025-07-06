@@ -70,5 +70,7 @@ public class Main_1018_ver2 {
 		*/
 		System.out.println(change);
 		//System.out.println(num);
+
+		sc.close();
 	}
 }
