@@ -1,110 +1,113 @@
-def get_new_arr2():
+def is_possible(y, x, n):
 	global arr
-	result = []
-	for i in range(0, 9, 3):
-		for j in range(0, 9, 3):
-			temp = []
-			for n in range(i, i+3):
-				for m in range(j, j+3):
-					temp.append(arr[n][m])
-		
-			result.append(temp)
-	
-	return result
 
-def fill_row(i):
-	global cnt, arr
+	for c in range(9):
+		if arr[y][c] == n:
+			return False
 
-	fill_num = 0
-	temp = sorted(arr[i])
+	for r in range(9):
+		if arr[r][x] == n:
+			return False
+
+	# 사각형 배열 만들기
+	y = (y//3)*3
+	x = (x//3)*3
+	for r in range(y, y+3):
+		for c in range(x, x+3):
+			if arr[r][c] == n:
+				return False
+
+	return True
+
+# def fill_row(y):
+# 	global cnt, arr
+
+# 	temp = sorted(arr[y])
+# 	fill_num = get_fill_num(temp)
+
+# 	if fill_num:
+# 		for x in range(9):
+# 			if arr[y][x] == 0:
+# 				arr[y][x] = fill_num
+# 				return True
+
+# 	return False
+
+# def fill_column(x):
+# 	global cnt, arr
+
+# 	temp = []
+
+# 	# 뒤집기
+# 	for y in range(9):
+# 		temp.append(arr[y][x])
+
+# 	temp = sorted(temp)
+# 	fill_num = get_fill_num(temp)
+
+# 	if fill_num:
+# 		for y in range(9):
+# 			if arr[y][x] == 0:
+# 				arr[y][x] = fill_num
+# 				return True
+
+# 	return False
+
+# def fill_rectangle(i, j):
+# 	global cnt, arr
+
+# 	temp = []
+
+# 	# 사각형 배열 만들기
+# 	i = (i//3)*3
+# 	j = (j//3)*3
+# 	for y in range(i, i+3):
+# 		for x in range(j, j+3):
+# 			temp.append(arr[y][x])
+
+# 	temp = sorted(temp)
+# 	fill_num = get_fill_num(temp)
+
+# 	if fill_num:
+# 		for y in range(i, i+3):
+# 			for x in range(j, j+3):
+# 				if arr[y][x] == 0:
+# 					arr[y][x] = fill_num
+# 					return True
+
+# 	return False
+
+def fill_up(lev):
+	global arr, pos
+
+	# base case
+	if lev == len(pos):
+		for row in arr:
+			print(" ".join(map(str, row)))
+		print()
+		exit(0)
+		return
+
+	y, x = pos[lev]
+
+	# recursive case
 	for n in range(1, 10):
-		if temp[n-1] != n:
-			fill_num = n
-
-	for j in range(9):
-		if arr[i][j] == 0:
-			arr[i][j] = fill_num
-			cnt -= 1
-			return
-
-def fill_column(i):
-	global cnt, new_arr, arr
-
-	fill_num = 0
-	temp = sorted(new_arr[i])
-	for n in range(1, 10):
-		if temp[n-1] != n:
-			fill_num = n
-
-	for j in range(9):
-		if arr[j][i] == 0:
-			arr[j][i] = fill_num
-			cnt -= 1
-			return
-
-def fill_rectangle(i, j):
-	global cnt, arr, new_arr2
-
-	fill_num = 0
-	temp = sorted(new_arr2)
-
-	for n in range(1,10):
-		if temp[n-1] != n:
-			fill_num = n
-
-	for n in range(i+3):
-		for m in range(j+3):
-			if arr[n][m] == 0:
-				arr[n][m] = fill_num
-				cnt -= 1
-				return
-
-def check_cnt(arr):
-	c = 0
-	for i in range(9):
-		if arr[i] == 0:
-			c += 1
-
-	return c == 1
+		if is_possible(y, x, n):
+			arr[y][x] = n
+			fill_up(lev+1)
+			arr[y][x] = 0
 
 # 입력받기
 arr = [list(map(int, input().split())) for _ in range(9)]
-new_arr = []
-new_arr2 = []
 
-# 0 개수 설정
-cnt = 0
+# 채워야 하는 좌표 저장
+pos = []
 for i in range(9):
 	for j in range(9):
 		if arr[i][j] == 0:
-			cnt += 1
+			pos.append((i, j))
 
 # 채우기
-while(cnt != 0):
-	for i in range(9):
-		if check_cnt(arr[i]):
-			fill_row(i)
+fill_up(0)
 
 
-	new_arr = list(map(list, zip(*arr)))
-	for i in range(9):
-		if check_cnt(new_arr[i]):
-			fill_column(i)
-
-	# new_arr2 = get_new_arr2()
-	for i in range(0, 9, 3):
-		for j in range(0, 9, 3):
-			new_arr2 = []
-			for n in range(i, i+3):
-				for m in range(j, j+3):
-					new_arr2.append(arr[n][m])
-			
-			if check_cnt(new_arr2):
-				fill_rectangle(i, j)
-
-	# for i in range(9):
-	# 	if check_cnt(new_arr2[i]):
-	# 		fill_rectangle(i)
-
-for row in arr:
-    print(" ".join(map(str, row)))
