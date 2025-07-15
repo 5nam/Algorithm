@@ -1,26 +1,24 @@
-def search(y, x):
-	global R, C, arr, dy, dx, ans, check, count
+def solution(r, c):
 
-	# base_case
-	if y < 0 or x < 0 or y >= R or x >= C:
-		return
-	if check[ord(arr[y][x]) - ord('A')]:
-		return
+    global R, C, arr, cur, ans, dir, check
 
-	check[ord(arr[y][x]) - ord('A')] = True
-	count += 1
+    if r < 0 or r >= R or c < 0 or c >= C:
+        return
+    if check[ord(arr[r][c]) - ord('A')]:
+        return
+    
+    check[ord(arr[r][c]) - ord('A')] = True
+    cur += 1
 
-	ans = max(ans, count)
+    ans = max(cur, ans)
 
-	# recursive_base
-	for i in range(4):
-		ny = y + dy[i]
-		nx = x + dx[i]
-
-		search(ny, nx)
-
-	check[ord(arr[y][x]) - ord('A')] = False
-	count -= 1
+    for i, j in dir:
+        n_r = r + i
+        n_c = c + j
+        solution(n_r, n_c)
+    
+    check[ord(arr[r][c]) - ord('A')] = False
+    cur -= 1
 
 
 # 입력받기
@@ -28,17 +26,11 @@ R, C = map(int, input().split())
 
 arr = [input() for _ in range(R)]
 
-# 좌표 이동 설정(상하좌우)
-dy = [1, -1, 0, 0]
-dx = [0, 0, -1, 1]
-
-ans = 0
-count = 0
-
+# 필요한 변수 선언하기
+cur, ans = 0, 0
+dir = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 check = [False] * 26
 
-search(0,0)
+solution(0,0)
 
 print(ans)
-
-
