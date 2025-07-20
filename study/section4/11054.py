@@ -1,89 +1,25 @@
-def solution(before, lev):
-    global n, arr, check, ans, cur
-    
-    # base_case
-    # if lev == n:
-    #     return
-    
-    if lev < 0 or lev >= n:
-        return
-    
-    if check[lev]:
-        return
-    
-    # recusrive_case
-    if before > arr[lev]:
-        before = arr[lev]
-        cur += 1
+N = int(input())
+arr = [0] + list(map(int, input().split()))
 
-    ans = max(ans, cur)
-    
-    check[lev] = True
-    
-    # 왼쪽 방향
-    solution(before, lev - 1)
-            
-    # 오른쪽 방향
-    solution(before, lev + 1)
-    
-    check[lev] = False
+ans = 0
+dp1 = [0] * (N+1)
+dp2 = [0] * (N+1)
 
-    
-n = int(input())
-arr = list(map(int, input().split()))
+# print(arr)
 
-target = min(arr)
+for i in range(1, N+1):
+    dp1[i] = 1
+    for j in range(1, i):
+        if arr[j] < arr[i]:
+            dp1[i] = max(dp1[i], dp1[j] + 1)
 
-before = 1_000
+for i in range(N, 0, -1):
+    dp2[i] = 1
+    for j in range(N, i, -1):
+        if arr[j] < arr[i]:
+            dp2[i] = max(dp2[i], dp2[j] + 1)
 
-left_dp = [0] * n
-right_dp = [0] * n
+for i in range(1, N+1):
+    ans = max(ans, dp1[i] + dp2[i] - 1)
 
-# 왼쪽 방향
-for mid in range(n):
-    cur = 1
-    before = arr[mid]
-    
-    if arr[mid] == target:
-        if not mid == 0 or next == n-1:
-            left_dp[mid] = 1
-            continue
-        
-    for next in range(mid-1, -1, -1):
-        if (not target == arr[next]) and (before > arr[next]) and (not arr[mid] == arr[next]):
-            cur += 1
-            before = arr[next]
-        
-        elif target == arr[next]:
-            if next == 0 or next == n-1:
-                cur += 1
-                before = arr[next]
-            
-    left_dp[mid] = cur
-
-before = 1_000
-
-# 오른쪽 방향
-for mid in range(n-1, -1, -1):
-    cur = 1
-    before = arr[mid]
-    
-    if arr[mid] == target:
-        if not mid == 0 or next == n-1:
-            right_dp[mid] = 1
-            continue
-        
-    for next in range(mid+1, n):
-        if (not target == arr[next]) and (before > arr[next]) and (not arr[mid] == arr[next]):
-            cur += 1
-            before = arr[next]
-        
-        elif target == arr[next]:
-            if next == 0 or next == n-1:
-                cur += 1
-                before = arr[next]
-            
-    right_dp[mid] = cur
-    
-
-print(left_dp, right_dp)
+print(ans)
